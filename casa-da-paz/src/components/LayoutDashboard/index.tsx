@@ -111,9 +111,17 @@ export const LayoutDashboard = (props: IProps) => {
                                 <li className="nav-item">
                                     <Link
                                         className={`nav-link`}
-                                        to={'/dashboard'}
+                                        to={'/voluntarios'}
                                     >
                                         Voluntarios
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className={`nav-link`}
+                                        to={'/galeria'}
+                                    >
+                                        Galeria
                                     </Link>
                                 </li>
                             </ul>

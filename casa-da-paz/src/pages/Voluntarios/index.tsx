@@ -4,7 +4,7 @@ import { IToken } from "../../interfaces/token";
 import { verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
 
-export default function Galeria() {
+export default function Voluntarios() {
     
     const navigate = useNavigate()
 
@@ -32,7 +32,7 @@ export default function Galeria() {
 
     return(
         <LayoutDashboard>
-            <h1>Galeria</h1>
+            <h1>Voluntarios</h1>
         </LayoutDashboard>
     )
 }

@@ -60,6 +60,19 @@ export default function Usuarios() {
 
     }, [])
 
+        // Função para excluir um usuário
+        const handleExcluir = (id: number) => {
+            const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
+            if (confirmacao) {
+                axios.delete(import.meta.env.VITE_URL + '/users/' + id) 
+                    .then(() => {
+                        alert("Usuário excluído com sucesso.");
+                    })
+                    .catch((err) => {
+                        alert("Erro ao excluir o usuário. Tente novamente mais tarde.");
+                        console.error("Erro ao excluir usuário:", err);
+                    });
+            }}
 
 
     return (
@@ -117,10 +130,11 @@ export default function Usuarios() {
                                                 Editar
                                             </button>
                                             <button
-                                                className="btn btn-danger"
-                                                type="submit"
-                                                >   
-                                            Excluir    
+                                            className="btn btn-danger"
+                                            type="button"
+                                            onClick={() => handleExcluir(usuario.id)}
+                                            >
+                                            Excluir
                                             </button>
                                         </td>
                                     </tr>
