@@ -67,6 +67,7 @@ export default function Usuarios() {
                 axios.delete(import.meta.env.VITE_URL + '/users/' + id) 
                     .then(() => {
                         alert("Usuário excluído com sucesso.");
+                        navigate('/usuarios')
                     })
                     .catch((err) => {
                         alert("Erro ao excluir o usuário. Tente novamente mais tarde.");

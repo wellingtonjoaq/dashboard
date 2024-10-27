@@ -6,20 +6,6 @@
       "password": "$2a$10$Y4/4ws04wYotZQg2RB1bwurp7W6RCq.NLrUEEONlOZEdjLXCVG/LW",
       "nome": "Admin",
       "permissoes": "admin"
-    },
-    {
-      "email": "yuri@gmail.com",
-      "password": "$2a$10$bx/TzDM.mrRiqFaSP6UxIedNuQj8P7bzIBxRs5MKVcOjv/25UGOz2",
-      "nome": "Yuri Alberto",
-      "permissoes": "admin",
-      "id": 2
-    },
-    {
-      "nome": "Yamal",
-      "email": "lamine@gmail.com",
-      "permissoes": "colaborador",
-      "password": "$2a$10$BR3n0jPf7W7V3waV7B3FvexR0L5nQYVf3MNeyt.0ykcHV0P4EhdsG",
-      "id": 3
     }
   ]
 }
