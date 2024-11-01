@@ -9,11 +9,12 @@ import axios from "axios";
 interface IForm {
     nome: string
     email: string
-    password?: string
-    permissoes: string
+    cpf: string
+    telefone: string
+    areas: string
 }
 
-export default function GerenciarUsuarios() {
+export default function GerenciarVoluntarios() {
 
     const {
         register,
@@ -49,15 +50,15 @@ export default function GerenciarUsuarios() {
 
         // console.log("Pode desfrutar do sistema :D")
 
-        const idUser = Number(id)
+        const idVoluntary = Number(id)
 
         console.log(import.meta.env.VITE_URL)
-        if (!isNaN(idUser)) {
+        if (!isNaN(idVoluntary)) {
             // editar
 
             // sweetalert2
             axios.get(import.meta.env.VITE_URL +
-                '/users?id=' + idUser)
+                '/voluntary?id=' + idVoluntary)
                 .then((res) => {
                     setIsEdit(true)
 
@@ -65,7 +66,9 @@ export default function GerenciarUsuarios() {
 
                     setValue("nome", res.data[0].nome)
                     setValue("email", res.data[0].email)
-                    setValue("permissoes", res.data[0].permissoes)
+                    setValue("cpf", res.data[0].cpf)
+                    setValue("telefone", res.data[0].telefone)
+                    setValue("areas", res.data[0].area)
 
 
                 })
@@ -77,19 +80,13 @@ export default function GerenciarUsuarios() {
         (data) => {
 
             if (isEdit) {
-                // esta editando
-
-                if (data.password?.trim() === '') {
-                    delete data.password
-                }
-
-                // Loading true
+                
                 axios.put(import.meta.env.VITE_URL +
-                    '/users/' + id,
+                    '/voluntary/' + id,
                     data
                 )
                     .then((res) => {
-                        navigate('/usuarios')
+                        navigate('/voluntarios')
                     })
                     .catch((err) => {
                         // COLOCAR ALERT DE ERRO!!
@@ -97,10 +94,10 @@ export default function GerenciarUsuarios() {
             } else {
 
                 // cadastrando
-                axios.post('http://localhost:3001/users',
+                axios.post('http://localhost:3001/voluntary',
                     data
                 ).then((res) => {
-                    navigate('/usuarios')
+                    navigate('/voluntarios')
                 })
                     .catch((err) => {
                         console.log(err)
@@ -115,7 +112,7 @@ export default function GerenciarUsuarios() {
         <>
             <LayoutDashboard>
                 <h1>
-                    {isEdit ? "Editar Usuário" : " Adicionar Usuário"}
+                    {isEdit ? "Editar Voluntario" : " Adicionar Voluntario"}
                 </h1>
 
                 <form
@@ -186,56 +183,75 @@ export default function GerenciarUsuarios() {
 
                     <div className="col-md-12">
                         <label
-                            htmlFor="permissoes"
+                            htmlFor="cpf"
                             className="form-label"
                         >
-                            Perfil
-                        </label>
-
-                        <select
-                            className="form-select"
-                            defaultValue={''}
-                            id="permissoes"
-                            required
-                            {
-                            ...register("permissoes",
-                                { required: 'Selecione' }
-                            )
-                            }
-                        >
-                            <option value="">
-                                Selecione o tipo
-                            </option>
-                            <option value="admin">
-                                Admin
-                            </option>
-                        </select>
-                        <div className="invalid-feedback">
-                            {errors.permissoes && errors.permissoes.message}
-                        </div>
-                    </div>
-
-                    <div className="col-md-12">
-                        <label
-                            htmlFor="password"
-                            className="form-label"
-                        >
-                            Senha
+                            Cpf
                         </label>
                         <input
-                            type="password"
+                            type="cpf"
                             className="form-control"
-                            placeholder="Digite sua senha"
-                            id="password"
+                            placeholder="Digite seu cpf"
+                            id="cpf"
                             required
-                            {...register('password',
+                            {...register('cpf',
                                 {
-                                    required: 'Senha é obrigatório!',
+                                    required: 'Cpf é obrigatório!',
                                 }
                             )}
                         />
                         <div className="invalid-feedback">
-                            {errors.password && errors.password.message}
+                            {errors.cpf && errors.cpf.message}
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-12">
+                        <label
+                            htmlFor="telefone"
+                            className="form-label"
+                        >
+                            Telefone
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Digite seu telefone"
+                            id="telefone"
+                            required
+                            {...register('telefone',
+                                {
+                                    required: 'Telefone é obrigatório!',
+                                }
+                            )}
+                        />
+                        <div className="invalid-feedback">
+                            {errors.telefone && errors.telefone.message}
+                        </div>
+
+                    </div>
+
+                    <div className="col-md-12">
+                        <label
+                            htmlFor="areas"
+                            className="form-label"
+                        >
+                            Areas
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Informe a area"
+                            id="areas"
+                            required
+                            {...register('areas',
+                                {
+                                    required: 'Area é obrigatório!',
+                                }
+                            )}
+                        />
+                        <div className="invalid-feedback">
+                            {errors.areas && errors.areas.message}
                         </div>
 
                     </div>

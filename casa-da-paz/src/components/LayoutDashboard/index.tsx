@@ -124,6 +124,14 @@ export const LayoutDashboard = (props: IProps) => {
                                         Galeria
                                     </Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className={`nav-link`}
+                                        to={'/memorial'}
+                                    >
+                                        Memorial
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </nav>

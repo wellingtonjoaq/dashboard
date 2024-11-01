@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { LayoutDashboard } from "../../components/LayoutDashboard"
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { IToken } from "../../interfaces/token"
 import { validaPermissao, verificaTokenExpirado } from "../../services/token"
 import { Loading } from "../../components/Loading"
@@ -18,8 +18,27 @@ export default function Usuarios() {
     const navigate = useNavigate()
 
     const [loading, setLoading] = useState(false)
+    
     const [dadosUsuarios, setDadosUsuarios] =
         useState<Array<IUsuarios>>([])
+
+    // Função para excluir um usuário
+    const handleExcluir = (id: number) => {
+        const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
+        if (confirmacao) {
+            axios.delete(import.meta.env.VITE_URL + '/users/' + id) 
+                .then(() => {
+                    alert("Usuário excluído com sucesso.");
+
+                    setDadosUsuarios((usuariosAtuais) => 
+                        usuariosAtuais.filter(usuario => usuario.id !== id));
+                })
+                .catch((err) => {
+                    alert("Erro ao excluir o usuário. Tente novamente mais tarde.");
+                    console.error("Erro ao excluir usuário:", err);
+                });
+        }}
+
 
     // Inicio, Update State, Destruir
     useEffect(() => {
@@ -58,24 +77,10 @@ export default function Usuarios() {
                 console.log(err)
             })
 
+            
     }, [])
 
-        // Função para excluir um usuário
-        const handleExcluir = (id: number) => {
-            const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
-            if (confirmacao) {
-                axios.delete(import.meta.env.VITE_URL + '/users/' + id) 
-                    .then(() => {
-                        alert("Usuário excluído com sucesso.");
-                        navigate('/usuarios')
-                    })
-                    .catch((err) => {
-                        alert("Erro ao excluir o usuário. Tente novamente mais tarde.");
-                        console.error("Erro ao excluir usuário:", err);
-                    });
-            }}
-
-
+        
     return (
         <>
             <Loading visible={loading} />

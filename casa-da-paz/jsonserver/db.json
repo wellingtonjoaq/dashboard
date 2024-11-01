@@ -6,6 +6,23 @@
       "password": "$2a$10$Y4/4ws04wYotZQg2RB1bwurp7W6RCq.NLrUEEONlOZEdjLXCVG/LW",
       "nome": "Admin",
       "permissoes": "admin"
+    },
+    {
+      "email": "pimba@gmail.com",
+      "password": "$2a$10$2olLxGOUa0HkxayupFFy8.kLfczB2C.BgH.OS2OPT0Rqxvp0MHCX.",
+      "nome": "cachaça",
+      "permissoes": "admin",
+      "id": 2
+    }
+  ],
+  "voluntary": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "email": "admin@gmail.com",
+      "cpf": "01352402612",
+      "telefone": "44984583877",
+      "area": "marketing"
     }
   ]
 }
