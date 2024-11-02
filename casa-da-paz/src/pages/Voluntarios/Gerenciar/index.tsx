@@ -11,7 +11,7 @@ interface IForm {
     email: string
     cpf: string
     telefone: string
-    areas: string
+    area: string
 }
 
 export default function GerenciarVoluntarios() {
@@ -68,7 +68,7 @@ export default function GerenciarVoluntarios() {
                     setValue("email", res.data[0].email)
                     setValue("cpf", res.data[0].cpf)
                     setValue("telefone", res.data[0].telefone)
-                    setValue("areas", res.data[0].area)
+                    setValue("area", res.data[0].area)
 
 
                 })
@@ -233,25 +233,25 @@ export default function GerenciarVoluntarios() {
 
                     <div className="col-md-12">
                         <label
-                            htmlFor="areas"
+                            htmlFor="area"
                             className="form-label"
                         >
-                            Areas
+                            Area
                         </label>
                         <input
                             type="text"
                             className="form-control"
                             placeholder="Informe a area"
-                            id="areas"
+                            id="area"
                             required
-                            {...register('areas',
+                            {...register('area',
                                 {
                                     required: 'Area é obrigatório!',
                                 }
                             )}
                         />
                         <div className="invalid-feedback">
-                            {errors.areas && errors.areas.message}
+                            {errors.area && errors.area.message}
                         </div>
 
                     </div>

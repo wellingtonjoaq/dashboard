@@ -3,6 +3,7 @@ import { LayoutDashboard } from "../../components/LayoutDashboard";
 import { IToken } from "../../interfaces/token";
 import { verificaTokenExpirado } from "../../services/token";
 import { useNavigate } from "react-router-dom";
+import styles from "./style.module.css"
 
 export default function Dashboard() {
     
@@ -32,7 +33,7 @@ export default function Dashboard() {
 
     return(
         <LayoutDashboard>
-            <h1></h1>
+            <h1>Painel Administrativo</h1>
         </LayoutDashboard>
     )
 }

@@ -23,6 +23,14 @@
       "cpf": "01352402612",
       "telefone": "44984583877",
       "area": "marketing"
+    },
+    {
+      "nome": "O Ogro Rei",
+      "email": "ogro@gmail.com",
+      "cpf": "00011122233",
+      "telefone": "44900009999",
+      "area": "Informatica",
+      "id": 2
     }
   ]
 }

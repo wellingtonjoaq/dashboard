@@ -112,6 +112,7 @@ export default function Voluntarios() {
                             <th scope="col">Cpf</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">Areas</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>

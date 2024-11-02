@@ -42,7 +42,7 @@ export const Rotas = () => {
                 /> 
 
                 <Route 
-                    path='/voluntarios:id'
+                    path='/voluntarios/:id'
                     element={<GerenciarVoluntarios />}
                 /> 
 
