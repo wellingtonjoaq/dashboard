@@ -25,11 +25,35 @@
       "area": "marketing"
     },
     {
-      "nome": "O Ogro Rei",
+      "nome": "O Ogro",
       "email": "ogro@gmail.com",
       "cpf": "00011122233",
-      "telefone": "44900009999",
+      "telefone": "44988007766",
       "area": "Informatica",
+      "id": 2
+    }
+  ],
+  "galery": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "imagem": ""
+    },
+    {
+      "nome": "O Ogro Rei",
+      "imagem": "",
+      "id": 2
+    }
+  ],
+  "memorial": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "imagem": ""
+    },
+    {
+      "nome": "O Ogro Rei",
+      "imagem": "",
       "id": 2
     }
   ]

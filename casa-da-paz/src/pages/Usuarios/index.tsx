@@ -88,8 +88,8 @@ export default function Usuarios() {
                 <div
                     className="d-flex justify-content-between mt-3"
                 >
-                    <h1 className="h2">Usuários</h1>
-
+                    <h1 className="h2 p-100 r-100">Usuários</h1>
+                    
                     <button
                         type="button"
                         className="btn btn-success"
@@ -99,7 +99,6 @@ export default function Usuarios() {
                     >
                         Adicionar
                     </button>
-
                 </div>
                 <table className="table table-striped">
                     <thead>

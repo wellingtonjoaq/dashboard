@@ -44,7 +44,7 @@ export default function Login() {
                     JSON.stringify(resposta.data)
                 )
 
-                navigate('/dashboard')
+                navigate('/usuarios')
 
 
             }).catch((erro) => {

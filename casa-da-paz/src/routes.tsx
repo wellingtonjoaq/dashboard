@@ -4,7 +4,6 @@ import {
     Route
 } from 'react-router-dom'
 import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
 import Usuarios from './pages/Usuarios'
 import GerenciarUsuarios from './pages/Usuarios/Gerenciar'
 import Galeria from './pages/Galeria'
@@ -21,10 +20,6 @@ export const Rotas = () => {
                 <Route 
                     path='/'
                     element={<Login />}
-                />
-                <Route 
-                    path='/dashboard'
-                    element={<Dashboard />}
                 />
 
                 <Route 

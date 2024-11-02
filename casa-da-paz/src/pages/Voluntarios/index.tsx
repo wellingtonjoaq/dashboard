@@ -91,7 +91,7 @@ export default function Voluntarios() {
                     className="d-flex justify-content-between mt-3"
                 >
                     <h1 className="h2">Voluntarios</h1>
-
+                    
                     <button
                         type="button"
                         className="btn btn-success"
@@ -103,6 +103,7 @@ export default function Voluntarios() {
                     </button>
 
                 </div>
+
                 <table className="table table-striped">
                     <thead>
                         <tr>

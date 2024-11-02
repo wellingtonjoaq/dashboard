@@ -32,7 +32,7 @@ export default function Memorial() {
 
     return(
         <LayoutDashboard>
-            <h1></h1>
+            <h1>Memorial</h1>
         </LayoutDashboard>
     )
 }

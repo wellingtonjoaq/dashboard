@@ -49,20 +49,9 @@ export const LayoutDashboard = (props: IProps) => {
                     href="#">
                     Gerenciamento
                 </a>
-                <button
-                    className="navbar-toggler position-absolute d-md-none collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#sidebarMenu"
-                    aria-controls="sidebarMenu"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+                
 
-                <div className="w-100"></div>
-                <div className="navbar-nav">
+                <div className="col-2 col-sm-1 col-md-1 col-lg-1 col-xl-1 navbar-nav">
                     <div className="nav-item text-nowrap">
                         <Link
                             className="nav-link px-3"
@@ -80,20 +69,13 @@ export const LayoutDashboard = (props: IProps) => {
             
             <div className="container-fluid">
                 <div className="row">
+
                     <nav
                         id="sidebarMenu"
-                        className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+                        className="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2 d-md-block bg-light sidebar" 
                     >
                         <div className="position-sticky pt-3">
                             <ul className="nav flex-column">
-                                <li className="nav-item">
-                                    <Link
-                                        className={`nav-link`}
-                                        to={'/dashboard'}
-                                    >
-                                        Dashboard
-                                    </Link>
-                                </li>
                                 {
                                     validaPermissao(
                                         ['admin', 'secretarios'],
@@ -138,7 +120,7 @@ export const LayoutDashboard = (props: IProps) => {
 
 
                     <main
-                        className="col-md-9 ms-sm-auto col-lg-10 px-md-4"
+                        className="col-1 col-sm-9 col-md-10 col-lg-10 col-xl-10 ms-sm-auto col-lg-10 px-md-4"
                     >
                         {props.children}
                     </main>
