@@ -74,50 +74,50 @@ export default function Galeria() {
         <>
             <Loading visible={loading} />
             <LayoutDashboard>
-                <div
-                    className="d-flex justify-content-between mt-3"
+            <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                <h1 className="h2">Galeria</h1>
+                <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => {
+                        navigate('/galeria/criar')
+                    }}
                 >
-                    <h1 className="h2">Galeria</h1>
-                    
-                    <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                            navigate('/galeria/criar')
-                        }}
-                    >
-                        Adicionar
-                    </button>
+                    Adicionar
+                </button>
+            </div>
 
-                </div>
-
-                <div className="card">
-                <div style={{
-                                    display: "flex",
-                                    flexWrap: "wrap" // Isso permitirá que os cards que não cabem em uma linha sejam quebrados para a linha de baixo.
-                                }}>
-                    {
-                        dadosGaleria.map((galeria) => {
-                            return (
-                                <div className="card-body" key={galeria.id} style={{
-                                    maxWidth: "18rem",
-                                    margin: "18px",
-                                    border: "1px solid #d2d2d2",
-                                    textAlign: "center",
-                                    padding: "10px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-between"
-                                }}>
-                                    <h2>{galeria.titulo}</h2>
-                                    <img src="././public/images-removebg-preview.png" alt="" />                                 
-                                    <p><strong>{galeria.data}</strong></p>
+            <div className="container mt-3 mb-4">
+                <div className="row">
+                    {dadosGaleria.map((galeria) => (
+                        <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={galeria.id}>
+                            <div className="card h-100 text-center">
+                                <div className="card-body d-flex flex-column justify-content-between">
+                                    <h2 className="card-title">{galeria.titulo}</h2>
+                                    <img src={galeria.imagem} alt="" className="img-fluid mb-3" /> {/* Descrição na imagem para acessibilidade */}
+                                    <p className="card-text"><strong>{galeria.data}</strong></p>
+                                    <div className="d-flex justify-content-center gap-2 mt-3">
+                                        <button
+                                            className="btn btn-warning"
+                                            type="button"
+                                            onClick={() => navigate(`/galerias/${galeria.id}`)}
+                                        >
+                                            Editar
+                                        </button>
+                                        <button
+                                            className="btn btn-danger"
+                                            type="button"
+                                            onClick={() => handleExcluir(galeria.id)}
+                                        >
+                                            Excluir
+                                        </button>
+                                    </div>
                                 </div>
-                            )
-                        })
-                    }
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                </div>
+            </div>
             </LayoutDashboard>
         </>
     )

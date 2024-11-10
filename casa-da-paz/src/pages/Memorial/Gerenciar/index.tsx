@@ -12,7 +12,7 @@ interface IForm {
     imagem: string
 }
 
-export default function GerenciarGaleria() {
+export default function GerenciarMemorial() {
 
     const {
         register,
@@ -55,7 +55,7 @@ export default function GerenciarGaleria() {
 
             // sweetalert2
             axios.get(import.meta.env.VITE_URL +
-                '/galery?id=' + idUser)
+                '/memorial?id=' + idUser)
                 .then((res) => {
                     setIsEdit(true)
 
@@ -78,11 +78,11 @@ export default function GerenciarGaleria() {
 
                 // Loading true
                 axios.put(import.meta.env.VITE_URL +
-                    '/galery/' + id,
+                    '/memorial/' + id,
                     data
                 )
                     .then((res) => {
-                        navigate('/galeria')
+                        navigate('/memorial')
                     })
                     .catch((err) => {
                         // COLOCAR ALERT DE ERRO!!
@@ -90,10 +90,10 @@ export default function GerenciarGaleria() {
             } else {
 
                 // cadastrando
-                axios.post('http://localhost:3001/galery',
+                axios.post('http://localhost:3001/memorial',
                     data
                 ).then((res) => {
-                    navigate('/galeria')
+                    navigate('/memorial')
                 })
                     .catch((err) => {
                         console.log(err)
@@ -108,7 +108,7 @@ export default function GerenciarGaleria() {
         <>
             <LayoutDashboard>
                 <h1>
-                    {isEdit ? "Editar Imagem" : " Adicionar Imagem"}
+                    {isEdit ? "Editar Memorial" : " Adicionar Memorial"}
                 </h1>
 
                 <form

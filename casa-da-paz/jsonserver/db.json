@@ -25,12 +25,20 @@
       "area": "marketing"
     },
     {
-      "nome": "O Ogro",
-      "email": "ogro@gmail.com",
+      "nome": "SAMUEL ALVES DE SANTANA JUNIOR",
+      "email": "alvessamuel205@gmail.com",
       "cpf": "00011122233",
-      "telefone": "44988007766",
-      "area": "Informatica",
+      "telefone": "44984593988",
+      "area": "Oficineiro",
       "id": 2
+    },
+    {
+      "nome": "SAMUEL ALVES DE SANTANA JUNIOR",
+      "email": "alvessamuel205@gmail.com",
+      "cpf": "00011122233",
+      "telefone": "44984593988",
+      "area": "Audiovisual",
+      "id": 3
     }
   ],
   "galery": [
@@ -51,7 +59,7 @@
       "data": "15/08/2011",
       "imagem": "",
       "id": 3
-    }, 
+    },
     {
       "titulo": "embora",
       "data": "15/08/2014",
@@ -81,6 +89,22 @@
       "data": "15/08/2016",
       "imagem": "",
       "id": 8
+    },
+    {
+      "titulo": "O Ogro",
+      "data": "2001-05-10",
+      "imagem": {
+        "0": {}
+      },
+      "id": 9
+    },
+    {
+      "titulo": "TRABALHO 2 BIMESTRE",
+      "data": "2000-05-20",
+      "imagem": {
+        "0": {}
+      },
+      "id": 10
     }
   ],
   "memorial": [
@@ -101,7 +125,7 @@
       "data": "15/08/2011",
       "imagem": "",
       "id": 3
-    }, 
+    },
     {
       "titulo": "embora",
       "data": "15/08/2014",
@@ -119,6 +143,46 @@
       "data": "15/08/2016",
       "imagem": "",
       "id": 6
+    },
+    {
+      "titulo": "TRABALHO 2 BIMESTRE",
+      "data": "2001-12-12",
+      "imagem": {
+        "0": {}
+      },
+      "id": 7
+    },
+    {
+      "titulo": "dasdsa",
+      "data": "2111-12-12",
+      "imagem": {
+        "0": {}
+      },
+      "id": 8
+    },
+    {
+      "titulo": "TRABALHO 2 BIMESTRE",
+      "data": "2121-12-12",
+      "imagem": {
+        "0": {}
+      },
+      "id": 9
+    },
+    {
+      "titulo": "212121122121",
+      "data": "3333-02-12",
+      "imagem": {
+        "0": {}
+      },
+      "id": 10
+    },
+    {
+      "titulo": "TRABALHO 2 BIMESTRE",
+      "data": "2344-03-12",
+      "imagem": {
+        "0": {}
+      },
+      "id": 11
     }
   ]
 }

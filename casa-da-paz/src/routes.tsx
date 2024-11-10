@@ -10,6 +10,8 @@ import Galeria from './pages/Galeria'
 import Voluntarios from './pages/Voluntarios'
 import Memorial from './pages/Memorial'
 import GerenciarVoluntarios from './pages/Voluntarios/Gerenciar'
+import GerenciarGaleria from './pages/Galeria/Gerenciar'
+import GerenciarMemorial from './pages/Memorial/Gerenciar'
 
 export const Rotas = () => {
     
@@ -46,12 +48,20 @@ export const Rotas = () => {
                     element={<Galeria />}
                 />   
 
-                
+                <Route 
+                    path='/galeria/:id'
+                    element={<GerenciarGaleria />}
+                /> 
 
                 <Route 
                     path='/memorial'
                     element={<Memorial />}
-                />          
+                />  
+
+                <Route 
+                    path='/memorial/:id'
+                    element={<GerenciarMemorial />}
+                />        
 
             </Routes>
         </BrowserRouter>

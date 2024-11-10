@@ -238,18 +238,23 @@ export default function GerenciarVoluntarios() {
                         >
                             Area
                         </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Informe a area"
-                            id="area"
-                            required
+                        <select className="form-select" id="areas" required
                             {...register('area',
                                 {
-                                    required: 'Area é obrigatório!',
+                                    required: 'Selecione uma area!',
                                 }
-                            )}
-                        />
+                            )}>
+                            <option selected disabled>Selecione uma área</option>
+                            <option value="Audiovisual">Audiovisual</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Programador Web designer">Programador Web designer</option>
+                            <option value="Captador de recursos">Captador de recursos</option>
+                            <option value="Oficineiro">Oficineiro</option>
+                            <option value="Auxiliar de bazar">Auxiliar de bazar</option>
+                            <option value="Atividades com as crianças">Atividades com as crianças</option>
+                            <option value="Palestrante">Palestrante</option>
+                            <option value="Promoções e Eventos">Promoções e Eventos</option>
+                        </select>
                         <div className="invalid-feedback">
                             {errors.area && errors.area.message}
                         </div>

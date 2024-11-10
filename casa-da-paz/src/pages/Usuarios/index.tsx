@@ -85,21 +85,20 @@ export default function Usuarios() {
         <>
             <Loading visible={loading} />
             <LayoutDashboard>
-                <div
-                    className="d-flex justify-content-between mt-3"
+            <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                <h1 className="h2">Usuários</h1>
+                <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => {
+                        navigate('/usuarios/criar')
+                    }}
                 >
-                    <h1 className="h2 p-100 r-100">Usuários</h1>
-                    
-                    <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                            navigate('/usuarios/criar')
-                        }}
-                    >
-                        Adicionar
-                    </button>
-                </div>
+                    Adicionar
+                </button>
+            </div>
+
+            <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -110,46 +109,39 @@ export default function Usuarios() {
                         </tr>
                     </thead>
                     <tbody>
-
-                        {
-                            dadosUsuarios.map((
-                                usuario,
-                                index
-                            ) => {
-                                return (
-                                    <tr key={index}>
-                                        <th scope="row">{usuario.id}</th>
-                                        <td>{usuario.nome}</td>
-                                        <td>{usuario.email}</td>
-                                        <td>
-                                            <button
-                                                className="btn btn-warning"
-                                                type="submit"
-                                                style={{
-                                                    marginRight: 5
-                                                }}
-                                                onClick={() => {
-                                                    navigate(`/usuarios/${usuario.id}`)
-                                                }}
-                                            >
-                                                Editar
-                                            </button>
-                                            <button
+                        {dadosUsuarios.map((usuario, index) => {
+                            return (
+                                <tr key={index}>
+                                    <th scope="row">{usuario.id}</th>
+                                    <td>{usuario.nome}</td>
+                                    <td>{usuario.email}</td>
+                                    <td>
+                                        <button
+                                            className="btn btn-warning"
+                                            type="submit"
+                                            style={{
+                                                marginRight: 5
+                                            }}
+                                            onClick={() => {
+                                                navigate(`/usuarios/${usuario.id}`)
+                                            }}
+                                        >
+                                            Editar
+                                        </button>
+                                        <button
                                             className="btn btn-danger"
                                             type="button"
                                             onClick={() => handleExcluir(usuario.id)}
-                                            >
+                                        >
                                             Excluir
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
-
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
-
                 </table>
+            </div>
             </LayoutDashboard>
         </>
     )

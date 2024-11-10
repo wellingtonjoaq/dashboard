@@ -87,23 +87,21 @@ export default function Voluntarios() {
         <>
             <Loading visible={loading} />
             <LayoutDashboard>
-                <div
-                    className="d-flex justify-content-between mt-3"
+            <div className="d-flex justify-content-between align-items-center mt-3 mb-4">
+                <h1 className="h2">Voluntários</h1>
+                
+                <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => {
+                        navigate('/voluntarios/criar')
+                    }}
                 >
-                    <h1 className="h2">Voluntarios</h1>
-                    
-                    <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                            navigate('/voluntarios/criar')
-                        }}
-                    >
-                        Adicionar
-                    </button>
+                    Adicionar
+                </button>
+            </div>
 
-                </div>
-
+            <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -112,54 +110,47 @@ export default function Voluntarios() {
                             <th scope="col">Email</th>
                             <th scope="col">Cpf</th>
                             <th scope="col">Telefone</th>
-                            <th scope="col">Areas</th>
+                            <th scope="col">Áreas</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        {
-                            dadosVoluntarios.map((
-                                voluntario,
-                                index
-                            ) => {
-                                return (
-                                    <tr key={index}>
-                                        <th scope="row">{voluntario.id}</th>
-                                        <td>{voluntario.nome}</td>
-                                        <td>{voluntario.email}</td>
-                                        <td>{voluntario.cpf}</td>
-                                        <td>{voluntario.telefone}</td>
-                                        <td>{voluntario.area}</td>
-                                        <td>
-                                            <button
-                                                className="btn btn-warning"
-                                                type="submit"
-                                                style={{
-                                                    marginRight: 5
-                                                }}
-                                                onClick={() => {
-                                                    navigate(`/voluntarios/${voluntario.id}`)
-                                                }}
-                                            >
-                                                Editar
-                                            </button>
-                                            <button
+                        {dadosVoluntarios.map((voluntario, index) => {
+                            return (
+                                <tr key={index}>
+                                    <th scope="row">{voluntario.id}</th>
+                                    <td>{voluntario.nome}</td>
+                                    <td>{voluntario.email}</td>
+                                    <td>{voluntario.cpf}</td>
+                                    <td>{voluntario.telefone}</td>
+                                    <td>{voluntario.area}</td>
+                                    <td>
+                                        <button
+                                            className="btn btn-warning"
+                                            type="submit"
+                                            style={{
+                                                marginRight: 5
+                                            }}
+                                            onClick={() => {
+                                                navigate(`/voluntarios/${voluntario.id}`)
+                                            }}
+                                        >
+                                            Editar
+                                        </button>
+                                        <button
                                             className="btn btn-danger"
                                             type="button"
                                             onClick={() => handleExcluir(voluntario.id)}
-                                            >
+                                        >
                                             Excluir
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
-
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
-
                 </table>
+            </div>
             </LayoutDashboard>
         </>
     )
