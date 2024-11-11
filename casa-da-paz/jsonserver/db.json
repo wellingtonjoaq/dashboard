@@ -22,14 +22,14 @@
       "email": "admin@gmail.com",
       "cpf": "01352402612",
       "telefone": "44984583877",
-      "area": "marketing"
+      "areas": "marketing"
     },
     {
       "nome": "SAMUEL ALVES DE SANTANA JUNIOR",
       "email": "alvessamuel205@gmail.com",
       "cpf": "00011122233",
       "telefone": "44984593988",
-      "area": "Oficineiro",
+      "areas": "Oficineiro",
       "id": 2
     },
     {
@@ -37,7 +37,7 @@
       "email": "alvessamuel205@gmail.com",
       "cpf": "00011122233",
       "telefone": "44984593988",
-      "area": "Audiovisual",
+      "areas": "Audiovisual",
       "id": 3
     }
   ],

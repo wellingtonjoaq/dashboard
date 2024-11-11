@@ -11,7 +11,7 @@ interface IForm {
     email: string
     cpf: string
     telefone: string
-    area: string
+    areas: string
 }
 
 export default function GerenciarVoluntarios() {
@@ -68,7 +68,7 @@ export default function GerenciarVoluntarios() {
                     setValue("email", res.data[0].email)
                     setValue("cpf", res.data[0].cpf)
                     setValue("telefone", res.data[0].telefone)
-                    setValue("area", res.data[0].area)
+                    setValue("areas", res.data[0].area)
 
 
                 })
@@ -81,8 +81,7 @@ export default function GerenciarVoluntarios() {
 
             if (isEdit) {
                 
-                axios.put(import.meta.env.VITE_URL +
-                    '/voluntary/' + id,
+                axios.put('http://localhost:8000/api/voluntarios/' + id,
                     data
                 )
                     .then((res) => {
@@ -94,14 +93,13 @@ export default function GerenciarVoluntarios() {
             } else {
 
                 // cadastrando
-                axios.post('http://localhost:3001/voluntary',
-                    data
-                ).then((res) => {
-                    navigate('/voluntarios')
-                })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+                axios.post('http://localhost:8000/api/voluntarios', data)
+            .then((res) => {
+                navigate('/voluntarios'); // Redireciona após o sucesso
+            })
+            .catch((err) => {
+                console.error('Erro ao criar voluntário:', err);
+            })
 
             }
 
@@ -239,7 +237,7 @@ export default function GerenciarVoluntarios() {
                             Area
                         </label>
                         <select className="form-select" id="areas" required
-                            {...register('area',
+                            {...register('areas',
                                 {
                                     required: 'Selecione uma area!',
                                 }
@@ -256,7 +254,7 @@ export default function GerenciarVoluntarios() {
                             <option value="Promoções e Eventos">Promoções e Eventos</option>
                         </select>
                         <div className="invalid-feedback">
-                            {errors.area && errors.area.message}
+                            {errors.areas && errors.areas.message}
                         </div>
 
                     </div>

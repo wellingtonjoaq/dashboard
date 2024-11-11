@@ -28,7 +28,7 @@ export default function Voluntarios() {
     const handleExcluir = (id: number) => {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
         if (confirmacao) {
-            axios.delete(import.meta.env.VITE_URL + '/voluntary/' + id) 
+            axios.delete('http://localhost:8000/api/voluntarios/' + id) 
                 .then(() => {
                     alert("Voluntario excluído com sucesso.");
 
@@ -69,7 +69,7 @@ export default function Voluntarios() {
         console.log("Pode desfrutar do sistema :D")
 
         setLoading(true)
-        axios.get('http://localhost:3001/voluntary')
+        axios.get('http://localhost:8000/api/voluntarios/')
             .then((res) => {
                 setDadosVoluntarios(res.data)
                 setLoading(false)
