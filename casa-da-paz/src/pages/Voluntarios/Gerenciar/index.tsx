@@ -48,63 +48,53 @@ export default function GerenciarVoluntarios() {
             navigate("/")
         }
 
-        // console.log("Pode desfrutar do sistema :D")
 
         const idVoluntary = Number(id)
 
-        console.log(import.meta.env.VITE_URL)
+        console.log('http://localhost:8000/api/voluntarios/')
         if (!isNaN(idVoluntary)) {
-            // editar
-
-            // sweetalert2
-            axios.get(import.meta.env.VITE_URL +
-                '/voluntary?id=' + idVoluntary)
+            
+            axios.get('http://localhost:8000/api/voluntarios/' + idVoluntary)
                 .then((res) => {
+                    console.log(res.data)
                     setIsEdit(true)
 
-                    // seed - BD - backend(Parecido com migrations)
 
-                    setValue("nome", res.data[0].nome)
-                    setValue("email", res.data[0].email)
-                    setValue("cpf", res.data[0].cpf)
-                    setValue("telefone", res.data[0].telefone)
-                    setValue("areas", res.data[0].area)
+                    setValue("nome", res.data.nome)
+                    setValue("email", res.data.email)
+                    setValue("cpf", res.data.cpf)
+                    setValue("telefone", res.data.telefone)
+                    setValue("areas", res.data.areas)
 
 
                 })
+                
         }
 
     }, [])
 
     const submitForm: SubmitHandler<IForm> = useCallback(
         (data) => {
-
-            if (isEdit) {
-                
-                axios.put('http://localhost:8000/api/voluntarios/' + id,
-                    data
-                )
-                    .then((res) => {
-                        navigate('/voluntarios')
+            if (isEdit && id) {
+                axios.put(`http://localhost:8000/api/voluntarios/${id}`, data)
+                    .then((err) => {
+                        alert("Erro ao atualizar o usuário.");
                     })
-                    .catch((err) => {
-                        // COLOCAR ALERT DE ERRO!!
-                    })
+                    .catch(() => {
+                        navigate('/voluntarios');
+                    });
             } else {
-
-                // cadastrando
                 axios.post('http://localhost:8000/api/voluntarios', data)
-            .then((res) => {
-                navigate('/voluntarios'); // Redireciona após o sucesso
-            })
-            .catch((err) => {
-                console.error('Erro ao criar voluntário:', err);
-            })
-
+                    .then((err) => {
+                        alert("Erro ao cadastrar o usuário.");
+                    })
+                    .catch(() => {
+                        navigate('/voluntarios');
+                    });
             }
-
-
-        }, [isEdit])
+        },
+        [isEdit, id, navigate]
+    );
 
     return (
         <>
@@ -234,7 +224,7 @@ export default function GerenciarVoluntarios() {
                             htmlFor="area"
                             className="form-label"
                         >
-                            Area
+                            Areas
                         </label>
                         <select className="form-select" id="areas" required
                             {...register('areas',

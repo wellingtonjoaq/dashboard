@@ -29,15 +29,15 @@ export default function Voluntarios() {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
         if (confirmacao) {
             axios.delete('http://localhost:8000/api/voluntarios/' + id) 
-                .then(() => {
+                .then((err) => {
+                    alert("Erro ao excluir o voluntario. Tente novamente mais tarde.");
+                    console.error("Erro ao excluir voluntario:", err);
+                })
+                .catch((res) => {
                     alert("Voluntario excluído com sucesso.");
 
                     setDadosVoluntarios((voluntariosAtuais) => 
                         voluntariosAtuais.filter(voluntario => voluntario.id !== id));
-                })
-                .catch((err) => {
-                    alert("Erro ao excluir o voluntario. Tente novamente mais tarde.");
-                    console.error("Erro ao excluir voluntario:", err);
                 });
         }}
 
@@ -70,17 +70,16 @@ export default function Voluntarios() {
 
         setLoading(true)
         axios.get('http://localhost:8000/api/voluntarios/')
-            .then((res) => {
-                setDadosVoluntarios(res.data)
-                setLoading(false)
-            })
-            .catch((err) => {
-                setLoading(false)
-                console.log(err)
-            })
-
-            
-    }, [])
+        .then((res) => {
+            console.log(res.data)
+            const data = res.data;
+            setDadosVoluntarios(Array.isArray(data) ? data : []);
+        })
+        .catch((err) => {
+            console.error("Erro ao carregar dados de voluntários:", err);
+        })
+        .finally(() => setLoading(false));
+}, [navigate]);
 
         
     return (
