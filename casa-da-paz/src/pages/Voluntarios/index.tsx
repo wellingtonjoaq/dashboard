@@ -12,7 +12,7 @@ interface IVoluntarios {
     email: string
     cpf: string
     telefone: string
-    area: string
+    areas: string
 }
 
 export default function Voluntarios() {
@@ -26,12 +26,11 @@ export default function Voluntarios() {
 
     // Função para excluir um usuário
     const handleExcluir = (id: number) => {
-        const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
+        const confirmacao = window.confirm("Tem certeza que deseja excluir este voluntario?");
         if (confirmacao) {
             axios.delete('http://localhost:8000/api/voluntarios/' + id) 
                 .then((err) => {
                     alert("Erro ao excluir o voluntario. Tente novamente mais tarde.");
-                    console.error("Erro ao excluir voluntario:", err);
                 })
                 .catch((res) => {
                     alert("Voluntario excluído com sucesso.");
@@ -122,7 +121,7 @@ export default function Voluntarios() {
                                     <td>{voluntario.email}</td>
                                     <td>{voluntario.cpf}</td>
                                     <td>{voluntario.telefone}</td>
-                                    <td>{voluntario.area}</td>
+                                    <td>{voluntario.areas}</td>
                                     <td>
                                         <button
                                             className="btn btn-warning"

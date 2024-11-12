@@ -51,7 +51,6 @@ export default function GerenciarVoluntarios() {
 
         const idVoluntary = Number(id)
 
-        console.log('http://localhost:8000/api/voluntarios/')
         if (!isNaN(idVoluntary)) {
             
             axios.get('http://localhost:8000/api/voluntarios/' + idVoluntary)

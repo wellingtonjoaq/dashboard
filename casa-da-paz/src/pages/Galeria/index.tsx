@@ -8,7 +8,7 @@ import axios from "axios"
 
 interface IGaleria {
     id: number
-    titulo: string
+    nome: string
     data: string
     imagem: string
 }
@@ -26,20 +26,19 @@ export default function Galeria() {
     const handleExcluir = (id: number) => {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
         if (confirmacao) {
-            axios.delete(import.meta.env.VITE_URL + '/galery/' + id) 
-                .then(() => {
-                    alert("Imagem excluída com sucesso.");
+            axios.delete('http://localhost:8000/api/galerias/' + id) 
+                .then((err) => {
+                    alert("Erro ao excluir a galeria. Tente novamente mais tarde.");
+                })
+                .catch((res) => {
+                    alert("Galeria excluída com sucesso.");
 
                     setDadosGaleria((galeriasAtuais) => 
                         galeriasAtuais.filter(galeria => galeria.id !== id));
-                })
-                .catch((err) => {
-                    alert("Erro ao excluir a imagem. Tente novamente mais tarde.");
                 });
         }}
 
 
-    // Inicio, Update State, Destruir
     useEffect(() => {
 
         let lsStorage = localStorage.getItem('americanos.token')
@@ -57,17 +56,17 @@ export default function Galeria() {
         }
 
         setLoading(true)
-        axios.get('http://localhost:3001/galery')
-            .then((res) => {
-                setDadosGaleria(res.data)
-                setLoading(false)
-            })
-            .catch((err) => {
-                setLoading(false)
-            })
-
-            
-    }, [])
+        axios.get('http://localhost:8000/api/galerias/')
+        .then((res) => {
+            console.log(res.data)
+            const data = res.data;
+            setDadosGaleria(Array.isArray(data) ? data : []);
+        })
+        .catch((err) => {
+            console.error("Erro ao carregar dados da galeria:", err);
+        })
+        .finally(() => setLoading(false));
+}, [navigate]);
 
         
     return (
@@ -93,14 +92,14 @@ export default function Galeria() {
                         <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={galeria.id}>
                             <div className="card h-100 text-center">
                                 <div className="card-body d-flex flex-column justify-content-between">
-                                    <h2 className="card-title">{galeria.titulo}</h2>
-                                    <img src={galeria.imagem} alt="" className="img-fluid mb-3" /> {/* Descrição na imagem para acessibilidade */}
+                                    <h2 className="card-title">{galeria.nome}</h2>
+                                    <img src={`http://localhost:8000/storage/${galeria.imagem}`} alt="" className="img-fluid mb-3" />
                                     <p className="card-text"><strong>{galeria.data}</strong></p>
                                     <div className="d-flex justify-content-center gap-2 mt-3">
                                         <button
                                             className="btn btn-warning"
                                             type="button"
-                                            onClick={() => navigate(`/galerias/${galeria.id}`)}
+                                            onClick={() => navigate(`/galeria/${galeria.id}`)}
                                         >
                                             Editar
                                         </button>
