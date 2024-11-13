@@ -176,7 +176,7 @@ export default function GerenciarVoluntarios() {
                             Cpf
                         </label>
                         <input
-                            type="cpf"
+                            type="text"
                             className="form-control"
                             placeholder="Digite seu cpf"
                             id="cpf"
