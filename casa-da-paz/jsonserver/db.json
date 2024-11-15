@@ -8,9 +8,9 @@
       "permissoes": "admin"
     },
     {
-      "email": "pimba@gmail.com",
-      "password": "$2a$10$2olLxGOUa0HkxayupFFy8.kLfczB2C.BgH.OS2OPT0Rqxvp0MHCX.",
-      "nome": "cachaça",
+      "email": "nigga@gmail.com",
+      "password": "$2a$10$TgdDqqZrLerwj2uydHXItO1EqWx2Ly7PVtzhyWh80GYb75jQPCYFy",
+      "nome": "Julio",
       "permissoes": "admin",
       "id": 2
     }
@@ -109,80 +109,30 @@
   ],
   "memorial": [
     {
-      "id": 1,
-      "titulo": "tchau",
-      "data": "15/08/2028",
-      "imagem": ""
-    },
-    {
-      "titulo": "oi",
-      "data": "15/08/2019",
-      "imagem": "",
+      "nome": "Wellington Joaquim",
+      "informacao": "Foto",
+      "imagem": {
+        "0": {}
+      },
       "id": 2
     },
     {
-      "titulo": "fu",
-      "data": "15/08/2011",
-      "imagem": "",
-      "id": 3
-    },
-    {
-      "titulo": "embora",
-      "data": "15/08/2014",
-      "imagem": "",
+      "nome": "Wellington",
+      "informacao": "Foto4",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": null,
       "id": 4
     },
     {
-      "titulo": "daqui",
-      "data": "15/08/2015",
-      "imagem": "",
+      "nome": "Wellington",
+      "informacao": "Foto",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": null,
       "id": 5
-    },
-    {
-      "titulo": "agora",
-      "data": "15/08/2016",
-      "imagem": "",
-      "id": 6
-    },
-    {
-      "titulo": "TRABALHO 2 BIMESTRE",
-      "data": "2001-12-12",
-      "imagem": {
-        "0": {}
-      },
-      "id": 7
-    },
-    {
-      "titulo": "dasdsa",
-      "data": "2111-12-12",
-      "imagem": {
-        "0": {}
-      },
-      "id": 8
-    },
-    {
-      "titulo": "TRABALHO 2 BIMESTRE",
-      "data": "2121-12-12",
-      "imagem": {
-        "0": {}
-      },
-      "id": 9
-    },
-    {
-      "titulo": "212121122121",
-      "data": "3333-02-12",
-      "imagem": {
-        "0": {}
-      },
-      "id": 10
-    },
-    {
-      "titulo": "TRABALHO 2 BIMESTRE",
-      "data": "2344-03-12",
-      "imagem": {
-        "0": {}
-      },
-      "id": 11
     }
   ]
 }
