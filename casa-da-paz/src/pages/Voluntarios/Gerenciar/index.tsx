@@ -85,10 +85,11 @@ export default function GerenciarVoluntarios() {
             } else {
                 axios.post('http://localhost:8000/api/voluntarios', data)
                     .then((err) => {
-                        alert("Erro ao cadastrar o usuário.");
+                        navigate('/voluntarios');
+
                     })
                     .catch(() => {
-                        navigate('/voluntarios');
+                        alert("Erro ao cadastrar o usuário.");
                     });
             }
         },

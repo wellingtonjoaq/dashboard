@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
-    // Hooks
     const navigate = useNavigate();
 
     const refForm = useRef<any>();
