@@ -6,13 +6,6 @@
       "password": "$2a$10$Y4/4ws04wYotZQg2RB1bwurp7W6RCq.NLrUEEONlOZEdjLXCVG/LW",
       "nome": "Admin",
       "permissoes": "admin"
-    },
-    {
-      "email": "nigga@gmail.com",
-      "password": "$2a$10$TgdDqqZrLerwj2uydHXItO1EqWx2Ly7PVtzhyWh80GYb75jQPCYFy",
-      "nome": "Julio",
-      "permissoes": "admin",
-      "id": 2
     }
   ],
   "voluntary": [
@@ -133,6 +126,105 @@
       },
       "tipo": null,
       "id": 5
+    },
+    {
+      "nome": "Rozelene Maria Corso Dalben",
+      "informacao": "Presidente",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "presidente",
+      "id": 6
+    },
+    {
+      "nome": "Silvia Ribeiro Martins",
+      "informacao": "Vice-Presidente",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "presidente",
+      "id": 7
+    },
+    {
+      "nome": "Anna Carla Ruiz Françolin",
+      "informacao": "Secretária",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "secretaria",
+      "id": 8
+    },
+    {
+      "nome": "Elyssandro Piffer",
+      "informacao": "Tesoureiro",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "tesoureiro",
+      "id": 9
+    },
+    {
+      "nome": "Claudio Martins",
+      "informacao": "Tesoureiro",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "tesoureiro",
+      "id": 10
+    },
+    {
+      "nome": "Daniel Couto de Brito",
+      "informacao": "Conselheiro Fiscal",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "conselheiroFiscal",
+      "id": 11
+    },
+    {
+      "nome": "Nair Serafim Gameiro",
+      "informacao": "Conselheira Fiscal",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "conselheiroFiscal",
+      "id": 12
+    },
+    {
+      "nome": "Mafalda Serafin Chagas",
+      "informacao": "Conselheira Fiscal",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "conselheiroFiscal",
+      "id": 13
+    },
+    {
+      "nome": "Maria Cleusa de Souza Silva",
+      "informacao": "Suplente",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "suplente",
+      "id": 14
+    },
+    {
+      "nome": "Paulino Alves de Almeida",
+      "informacao": "Suplente",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "suplente",
+      "id": 15
+    },
+    {
+      "nome": "Amauri Aparecido Martins",
+      "informacao": "Suplente",
+      "imagem": {
+        "0": {}
+      },
+      "tipo": "suplente",
+      "id": 16
     }
   ]
 }
