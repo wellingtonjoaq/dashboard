@@ -1,0 +1,19 @@
+.navbar {
+    background-color: rgb(137, 183,45);
+    height: 45px;
+}
+
+.list{
+    height: 100%;
+}
+
+.texto{
+    text-align: center;
+}
+.pimba{
+    background-color: blue;
+}
+
+.barra{
+    background-color: blue;
+}
