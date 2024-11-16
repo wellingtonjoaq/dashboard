@@ -40,7 +40,6 @@ export default function Usuarios() {
         }}
 
 
-    // Inicio, Update State, Destruir
     useEffect(() => {
 
         let lsStorage = localStorage.getItem('americanos.token')
