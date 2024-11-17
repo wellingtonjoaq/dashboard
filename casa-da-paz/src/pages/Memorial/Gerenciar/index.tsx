@@ -29,7 +29,7 @@ export default function GerenciarMemorial() {
     const [isEdit, setIsEdit] = useState<boolean>(false);
 
     useEffect(() => {
-        let lsStorage = localStorage.getItem("americanos.token");
+        let lsStorage = localStorage.getItem("casadapaz.token");
         let token: IToken | null = null;
 
         if (typeof lsStorage === "string") {
@@ -43,24 +43,38 @@ export default function GerenciarMemorial() {
         const idItem = Number(id);
         if (!isNaN(idItem)) {
             axios
-                .get(`http://localhost:8000/api/memorial/${idItem}`)
+                .get(`http://localhost:8000/api/memorial?id=${idItem}`)
                 .then((res) => {
                     setIsEdit(true);
                     setValue("nome", res.data[0].nome);
-                    setValue("imagem", res.data[0].imagem);
                     setValue("informacao", res.data[0].informacao);
+                    setValue("imagem", res.data[0].imagem); 
                 });
         }
-    }, []);
+    }, [id, navigate, setValue]);
 
     const submitForm: SubmitHandler<IForm> = useCallback(
         (data) => {
-            const url = 'http://localhost:8000/api/memorial/';
+            const url = "http://localhost:8000/api/memorial";
             const requestData = { ...data, tipo };
 
+            const formData = new FormData();
+            formData.append("nome", data.nome);
+            formData.append("informacao", data.informacao);
+
+            if (tipo) {
+                formData.append("tipo", tipo);
+            }
+
+            // Verifica se há uma imagem e a anexa
+            if (data.imagem && data.imagem[0]) {
+                formData.append("imagem", data.imagem[0]);
+            }
+
             if (isEdit) {
+                // Envia a requisição PUT para editar
                 axios
-                    .put(`${url}/${id}`, requestData)
+                    .put(`${url}/${id}`, formData)
                     .then(() => {
                         navigate("/memorial");
                     })
@@ -68,8 +82,9 @@ export default function GerenciarMemorial() {
                         console.error(err);
                     });
             } else {
+                // Envia a requisição POST para adicionar
                 axios
-                    .post(url, requestData)
+                    .post(url, formData)
                     .then(() => {
                         navigate("/memorial");
                     })
@@ -78,7 +93,7 @@ export default function GerenciarMemorial() {
                     });
             }
         },
-        [isEdit]
+        [isEdit, tipo, id, navigate]
     );
 
     return (
@@ -141,9 +156,8 @@ export default function GerenciarMemorial() {
                         className="form-control"
                         id="imagem"
                         accept="image/*"
-                        required
                         {...register("imagem", {
-                            required: "Imagem é obrigatória!",
+                            required: !isEdit && "Imagem é obrigatória!",
                         })}
                     />
                     <div className="invalid-feedback">

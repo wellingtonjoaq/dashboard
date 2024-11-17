@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { IToken } from '../../interfaces/token'
-import { validaPermissao } from '../../services/token'
 import styles from './style.module.css'
 
 interface IProps {
@@ -62,17 +61,13 @@ export const LayoutDashboard = (props: IProps) => {
         >
             <div className="position-sticky pt-3">
                 <ul className="nav flex-column">
-                    {
-                        validaPermissao(
-                            ['admin', 'secretarios'],
-                            token?.user.permissoes
-                        ) &&
-                        <li className="nav-item">
-                            <Link className="nav-link" to={'/usuarios'}>
-                                Usuários
-                            </Link>
-                        </li>
-                    }
+
+                    <li className="nav-item">
+                        <Link className="nav-link" to={'/usuarios'}>
+                            Usuários
+                        </Link>
+                    </li>
+
                     <li className="nav-item">
                         <Link className="nav-link" to={'/voluntarios'}>
                             Voluntários
