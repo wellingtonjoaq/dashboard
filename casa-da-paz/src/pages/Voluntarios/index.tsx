@@ -41,7 +41,7 @@ export default function Voluntarios() {
     };
 
     useEffect(() => {
-        const lsStorage = localStorage.getItem("americanos.token");
+        const lsStorage = localStorage.getItem("casadapaz.token");
         let token: IToken | null = null;
 
         if (typeof lsStorage === "string") {
@@ -50,11 +50,6 @@ export default function Voluntarios() {
 
         if (!token || verificaTokenExpirado(token.accessToken)) {
             navigate("/");
-            return;
-        }
-
-        if (!validaPermissao(["admin", "secretarios"], token.user.permissoes)) {
-            navigate("/dashboard");
             return;
         }
 

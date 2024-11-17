@@ -26,7 +26,7 @@ export default function Memorial() {
     const carregarDados = async (tipo: "presidente" | "secretaria" | "tesoureiro" | "conselheiroFiscal" | "suplente") => {
         setLoading(true);
         try {
-            const res = await axios.get(`${import.meta.env.VITE_URL}/memorial?tipo=${tipo}`);
+            const res = await axios.get(`http://localhost:8000/api/memorial/?tipo=${tipo}`);
             
             if (tipo === "presidente") {
                 setDadosPresidentes(res.data);

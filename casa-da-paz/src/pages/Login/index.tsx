@@ -28,27 +28,24 @@ export default function Login() {
             }
 
 
-            axios.post('http://localhost:3001/login',
+            axios.post('http://localhost:8000/api/login',
                 {
                     email: target.email.value,
                     password: target.senha.value,
                 }
-            ).then((resposta) => {
-
-                console.log('deu bao')
-                console.log(resposta.data)
+            ).then((response) => {
 
                 localStorage.setItem(
-                    'americanos.token',
-                    JSON.stringify(resposta.data)
+                    'casadapaz.token',
+                    JSON.stringify(response.data)
                 )
 
                 navigate('/usuarios')
 
 
-            }).catch((erro) => {
+            }).catch((error) => {
                 console.log('deu ruim')
-                console.log(erro)
+                console.log(error)
                 setLoading(false)
                 setToast(true)
             })

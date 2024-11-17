@@ -4,13 +4,6 @@ import { IToken } from '../../interfaces/token'
 import { validaPermissao } from '../../services/token'
 import styles from './style.module.css'
 
-//Exemplo enterder undefined ou null
-let Pessoa = {
-    nome: "Junior",
-    email: null,
-    // idade: undefined
-}
-
 interface IProps {
     children: ReactNode
 }
@@ -20,7 +13,7 @@ export const LayoutDashboard = (props: IProps) => {
     const navigate = useNavigate();
 
     const aLogout = () => {
-        localStorage.removeItem('americanos.token');
+        localStorage.removeItem('casadapaz.token');
         navigate('/');
     };
 
@@ -28,7 +21,7 @@ export const LayoutDashboard = (props: IProps) => {
 
     useEffect(() => {
         let lsToken =
-            localStorage.getItem('americanos.token')
+            localStorage.getItem('casadapaz.token')
 
         let token: IToken | undefined
 

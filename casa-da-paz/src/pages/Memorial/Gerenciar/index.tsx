@@ -9,7 +9,7 @@ import axios from "axios";
 interface IForm {
     nome: string;
     informacao: string;
-    imagem: string;
+    imagem: FileList;
 }
 
 export default function GerenciarMemorial() {
@@ -43,19 +43,19 @@ export default function GerenciarMemorial() {
         const idItem = Number(id);
         if (!isNaN(idItem)) {
             axios
-                .get(`${import.meta.env.VITE_URL}/memorial?id=${idItem}`)
+                .get(`http://localhost:8000/api/memorial/${idItem}`)
                 .then((res) => {
                     setIsEdit(true);
                     setValue("nome", res.data[0].nome);
-                    setValue("informacao", res.data[0].informacao);
                     setValue("imagem", res.data[0].imagem);
+                    setValue("informacao", res.data[0].informacao);
                 });
         }
     }, []);
 
     const submitForm: SubmitHandler<IForm> = useCallback(
         (data) => {
-            const url = `${import.meta.env.VITE_URL}/memorial`;
+            const url = 'http://localhost:8000/api/memorial/';
             const requestData = { ...data, tipo };
 
             if (isEdit) {

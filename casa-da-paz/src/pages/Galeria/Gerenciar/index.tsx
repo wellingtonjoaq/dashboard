@@ -9,7 +9,7 @@ import axios from "axios";
 interface IForm {
     nome: string;
     data: string;
-    imagem: FileList;
+    imagem: FileList; 
 }
 
 export default function GerenciarGaleria() {
@@ -26,7 +26,7 @@ export default function GerenciarGaleria() {
     const [isEdit, setIsEdit] = useState<boolean>(false);
 
     useEffect(() => {
-        const lsStorage = localStorage.getItem('americanos.token');
+        const lsStorage = localStorage.getItem('casadapaz.token');
         let token: IToken | null = null;
 
         if (typeof lsStorage === 'string') {

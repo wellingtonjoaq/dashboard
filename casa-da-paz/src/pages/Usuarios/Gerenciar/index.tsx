@@ -32,7 +32,7 @@ export default function GerenciarUsuarios() {
     // Inicio, Update State, Destruir
     useEffect(() => {
 
-        let lsStorage = localStorage.getItem('americanos.token')
+        let lsStorage = localStorage.getItem('casadapaz.token')
 
         let token: IToken | null = null
 
@@ -50,20 +50,16 @@ export default function GerenciarUsuarios() {
 
         const idUser = Number(id)
 
-        console.log(import.meta.env.VITE_URL)
         if (!isNaN(idUser)) {
             // editar
 
             // sweetalert2
-            axios.get(import.meta.env.VITE_URL +
-                '/users?id=' + idUser)
-                .then((res) => {
+            axios.get('http://localhost:8000/api/user?id=' + idUser)
+                .then((response) => {
                     setIsEdit(true)
 
-            //         // seed - BD - backend(Parecido com migrations)
-
-                    setValue("name", res.data[0].nome)
-                    setValue("email", res.data[0].email)
+                    setValue("name", response.data[0].name)
+                    setValue("email", response.data[0].email)
 
 
                 })
@@ -75,31 +71,25 @@ export default function GerenciarUsuarios() {
         (data) => {
 
             if (isEdit) {
-                // esta editando
 
                 if (data.password?.trim() === '') {
                     delete data.password
                 }
 
-                // Loading true
-                axios.put(import.meta.env.VITE_URL +
-                    '/users/' + id,
+                axios.put('http://localhost:8000/api/user/' + id,
                     data
                 )
-                    .then((res) => {
+                    .then(() => {
                         navigate('/usuarios')
                     })
-                    .catch((err) => {
-                        // COLOCAR ALERT DE ERRO!!
+                    .catch((error) => {
+                        console.log(error)
                     })
             } else {
 
                 // cadastrando
-                axios.post('http://localhost:8000/api/register', data, {
-                    withCredentials: true,
-                }
-                ).then((response) => {
-                    console.log(response)
+                axios.post('http://localhost:8000/api/register', data
+                ).then(() => {
                     navigate('/usuarios')
                 })
                     .catch((error) => {
