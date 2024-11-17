@@ -8,9 +8,8 @@ import axios from "axios"
 
 interface IUsuarios {
     id: number
-    nome: string
+    name: string
     email: string
-    permissoes: string
 }
 
 export default function Usuarios() {
@@ -26,7 +25,7 @@ export default function Usuarios() {
     const handleExcluir = (id: number) => {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
         if (confirmacao) {
-            axios.delete(import.meta.env.VITE_URL + '/users/' + id) 
+            axios.delete('http://localhost:8000/api/user/' + id) 
                 .then(() => {
                     alert("Usuário excluído com sucesso.");
 
@@ -40,10 +39,9 @@ export default function Usuarios() {
         }}
 
 
-    // Inicio, Update State, Destruir
     useEffect(() => {
 
-        let lsStorage = localStorage.getItem('americanos.token')
+        let lsStorage = localStorage.getItem('casadapaz.token')
 
         let token: IToken | null = null
 
@@ -57,28 +55,18 @@ export default function Usuarios() {
             navigate("/")
         }
 
-        if (!validaPermissao(
-            ['admin', 'secretarios'],
-            token?.user.permissoes
-        )) {
-            navigate('/dashboard')
-        }
 
-        console.log("Pode desfrutar do sistema :D")
-
-        setLoading(true)
-        axios.get('http://localhost:3001/users')
-            .then((res) => {
-                setDadosUsuarios(res.data)
-                setLoading(false)
+        setLoading(true);
+        axios.get('http://localhost:8000/api/user/') // A URL de API foi alterada para '/users'
+            .then((response) => {
+                setDadosUsuarios(response.data); // Assume que a resposta seja uma lista de usuários
+                setLoading(false);
             })
-            .catch((err) => {
-                setLoading(false)
-                console.log(err)
-            })
-
-            
-    }, [])
+            .catch((error) => {
+                setLoading(false);
+                console.error("Erro ao buscar usuários:", error);
+            });
+    }, [navigate]);
 
         
     return (
@@ -113,7 +101,7 @@ export default function Usuarios() {
                             return (
                                 <tr key={index}>
                                     <th scope="row">{usuario.id}</th>
-                                    <td>{usuario.nome}</td>
+                                    <td>{usuario.name}</td>
                                     <td>{usuario.email}</td>
                                     <td>
                                         <button

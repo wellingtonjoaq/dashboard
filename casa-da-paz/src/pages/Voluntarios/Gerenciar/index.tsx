@@ -31,10 +31,9 @@ export default function GerenciarVoluntarios() {
 
     const [isEdit, setIsEdit] = useState<boolean>(false)
 
-    // Inicio, Update State, Destruir
     useEffect(() => {
 
-        let lsStorage = localStorage.getItem('americanos.token')
+        let lsStorage = localStorage.getItem('casadapaz.token')
 
         let token: IToken | null = null
 
@@ -76,19 +75,18 @@ export default function GerenciarVoluntarios() {
         (data) => {
             if (isEdit && id) {
                 axios.put(`http://localhost:8000/api/voluntarios/${id}`, data)
-                    .then((err) => {
-                        alert("Erro ao atualizar o usuário.");
+                    .then(() => {
+                        navigate('/voluntarios');
                     })
                     .catch(() => {
-                        navigate('/voluntarios');
+                        alert("Erro ao atualizar o usuário.");
                     });
             } else {
-                axios.post('http://localhost:8000/api/voluntarios', data)
-                    .then((err) => {
+                axios.post('http://localhost:8000/api/voluntarios/', data)
+                    .then(() => {
                         navigate('/voluntarios');
-
                     })
-                    .catch(() => {
+                    .catch((err) => {
                         alert("Erro ao cadastrar o usuário.");
                     });
             }

@@ -41,7 +41,7 @@ export default function Galeria() {
 
     useEffect(() => {
 
-        let lsStorage = localStorage.getItem('americanos.token')
+        let lsStorage = localStorage.getItem('casadapaz.token')
 
         let token: IToken | null = null
 
