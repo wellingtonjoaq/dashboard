@@ -29,7 +29,6 @@ export default function GerenciarUsuarios() {
 
     const [isEdit, setIsEdit] = useState<boolean>(false)
 
-    // Inicio, Update State, Destruir
     useEffect(() => {
 
         let lsStorage = localStorage.getItem('casadapaz.token')
@@ -46,14 +45,11 @@ export default function GerenciarUsuarios() {
             navigate("/")
         }
 
-        // console.log("Pode desfrutar do sistema :D")
 
         const idUser = Number(id)
 
         if (!isNaN(idUser)) {
-            // editar
 
-            // sweetalert2
             axios.get('http://localhost:8000/api/user?id=' + idUser)
                 .then((response) => {
                     setIsEdit(true)
@@ -87,7 +83,6 @@ export default function GerenciarUsuarios() {
                     })
             } else {
 
-                // cadastrando
                 axios.post('http://localhost:8000/api/register', data
                 ).then(() => {
                     navigate('/usuarios')

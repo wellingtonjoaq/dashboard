@@ -20,7 +20,6 @@ export default function Voluntarios() {
     const [loading, setLoading] = useState(false);
     const [dadosVoluntarios, setDadosVoluntarios] = useState<IVoluntarios[]>([]);
 
-    // Função para excluir um usuário
     const handleExcluir = (id: number) => {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este voluntário?");
         if (confirmacao) {

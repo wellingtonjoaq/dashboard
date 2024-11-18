@@ -22,19 +22,19 @@ export default function Galeria() {
     const [dadosGaleria, setDadosGaleria] =
         useState<Array<IGaleria>>([])
 
-    // Função para excluir um usuário
     const handleExcluir = (id: number) => {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
         if (confirmacao) {
             axios.delete('http://localhost:8000/api/galerias/' + id) 
-                .then((err) => {
-                    alert("Erro ao excluir a galeria. Tente novamente mais tarde.");
-                })
-                .catch((res) => {
+                .then(() => {
                     alert("Galeria excluída com sucesso.");
 
                     setDadosGaleria((galeriasAtuais) => 
                         galeriasAtuais.filter(galeria => galeria.id !== id));
+                })
+                .catch(() => {
+                    alert("Erro ao excluir a galeria. Tente novamente mais tarde.");
+
                 });
         }}
 

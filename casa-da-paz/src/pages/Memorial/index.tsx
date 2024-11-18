@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { LayoutDashboard } from "../../components/LayoutDashboard";
 import { useEffect, useState } from "react";
-import { IToken } from "../../interfaces/token";
-import { verificaTokenExpirado } from "../../services/token";
 import { Loading } from "../../components/Loading";
 import axios from "axios";
+import { IToken } from "../../interfaces/token";
 
 interface IMemorialItem {
     id: number;
@@ -26,29 +25,21 @@ export default function Memorial() {
     const carregarDados = async (tipo: "presidente" | "secretaria" | "tesoureiro" | "conselheiroFiscal" | "suplente") => {
         setLoading(true);
         try {
-            const res = await axios.get(`http://localhost:8000/api/memorial?tipo=${tipo}`);
+            const res = await axios.get(`${import.meta.env.VITE_URL}/memorial?tipo=${tipo}`);
             
-            switch (tipo) {
-                case "presidente":
-                    setDadosPresidentes(res.data);
-                    break;
-                case "secretaria":
-                    setDadosSecretaria(res.data);
-                    break;
-                case "tesoureiro":
-                    setDadosTesoureiro(res.data);
-                    break;
-                case "conselheiroFiscal":
-                    setDadosConselheiroFiscal(res.data);
-                    break;
-                case "suplente":
-                    setDadosSuplente(res.data);
-                    break;
-                default:
-                    break;
+            if (tipo === "presidente") {
+                setDadosPresidentes(res.data);
+            } else if (tipo === "secretaria") {
+                setDadosSecretaria(res.data);
+            } else if (tipo === "tesoureiro") {
+                setDadosTesoureiro(res.data);
+            } else if (tipo === "conselheiroFiscal") {
+                setDadosConselheiroFiscal(res.data);
+            } else if (tipo === "suplente") {
+                setDadosSuplente(res.data);
             }
         } catch (err) {
-            console.error(`Erro ao carregar ${tipo}s`, err);
+            console.error(`Erro ao carregar ${tipo}s, err`);
         } finally {
             setLoading(false);
         }
@@ -58,28 +49,20 @@ export default function Memorial() {
         const confirmacao = window.confirm(`Tem certeza que deseja excluir este ${tipo}?`);
         if (confirmacao) {
             axios
-                .delete(`http://localhost:8000/api/memorial/${id}?tipo=${tipo}`)
+                .delete(`${import.meta.env.VITE_URL}/memorial/${id}?tipo=${tipo}`)
                 .then(() => {
                     alert(`${tipo.charAt(0).toUpperCase() + tipo.slice(1)} excluído com sucesso.`);
                     
-                    switch (tipo) {
-                        case "presidente":
-                            setDadosPresidentes((atual) => atual.filter((item) => item.id !== id));
-                            break;
-                        case "secretaria":
-                            setDadosSecretaria((atual) => atual.filter((item) => item.id !== id));
-                            break;
-                        case "tesoureiro":
-                            setDadosTesoureiro((atual) => atual.filter((item) => item.id !== id));
-                            break;
-                        case "conselheiroFiscal":
-                            setDadosConselheiroFiscal((atual) => atual.filter((item) => item.id !== id));
-                            break;
-                        case "suplente":
-                            setDadosSuplente((atual) => atual.filter((item) => item.id !== id));
-                            break;
-                        default:
-                            break;
+                    if (tipo === "presidente") {
+                        setDadosPresidentes((atual) => atual.filter((item) => item.id !== id));
+                    } else if (tipo === "secretaria") {
+                        setDadosSecretaria((atual) => atual.filter((item) => item.id !== id));
+                    } else if (tipo === "tesoureiro") {
+                        setDadosTesoureiro((atual) => atual.filter((item) => item.id !== id));
+                    } else if (tipo === "conselheiroFiscal") {
+                        setDadosConselheiroFiscal((atual) => atual.filter((item) => item.id !== id));
+                    } else if (tipo === "suplente") {
+                        setDadosSuplente((atual) => atual.filter((item) => item.id !== id));
                     }
                 })
                 .catch(() => {
@@ -89,19 +72,20 @@ export default function Memorial() {
     };
 
     useEffect(() => {
-        const lsStorage = localStorage.getItem("casadapaz.token");
-        let token: IToken | null = lsStorage ? JSON.parse(lsStorage) : null;
+        let lsStorage = localStorage.getItem('casadapaz.token')
 
-        if (!token || verificaTokenExpirado(token.accessToken)) {
-            navigate("/");
-        } else {
+        let token: IToken | null = null
+
+        if (typeof lsStorage === 'string') {
+            token = JSON.parse(lsStorage)
+        }
             carregarDados("presidente");
             carregarDados("secretaria");
             carregarDados("tesoureiro");
             carregarDados("conselheiroFiscal");
             carregarDados("suplente");
-        }
-    }, [navigate]);
+        
+        }, []);
 
     const renderCard = (item: IMemorialItem, tipo: "presidente" | "secretaria" | "tesoureiro" | "conselheiroFiscal" | "suplente") => (
         <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={item.id}>
@@ -145,7 +129,6 @@ export default function Memorial() {
                     <h1 className="h2">Memorial</h1>
                 </div>
 
-                {/* Seção de Presidentes */}
                 <div className="border border-dark p-3 mb-4">
                     <h2>Presidentes</h2>
                     <div className="container mt-3 mb-4">
@@ -162,7 +145,6 @@ export default function Memorial() {
                     </button>
                 </div>
 
-                {/* Seção de Secretarias */}
                 <div className="border border-dark p-3 mb-4">
                     <h2>Secretarias</h2>
                     <div className="container mt-3 mb-4">
@@ -179,7 +161,6 @@ export default function Memorial() {
                     </button>
                 </div>
 
-                {/* Seção de Tesoureiros */}
                 <div className="border border-dark p-3 mb-4">
                     <h2>Tesoureiros</h2>
                     <div className="container mt-3 mb-4">
@@ -196,7 +177,6 @@ export default function Memorial() {
                     </button>
                 </div>
 
-                {/* Seção de Conselheiros Fiscais */}
                 <div className="border border-dark p-3 mb-4">
                     <h2>Conselheiros Fiscais</h2>
                     <div className="container mt-3 mb-4">
@@ -213,7 +193,6 @@ export default function Memorial() {
                     </button>
                 </div>
 
-                {/* Seção de Suplentes */}
                 <div className="border border-dark p-3 mb-4">
                     <h2>Suplentes</h2>
                     <div className="container mt-3 mb-4">

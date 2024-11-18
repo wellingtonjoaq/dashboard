@@ -37,18 +37,15 @@ export default function GerenciarGaleria() {
             navigate("/");
         }
 
-        // Certifique-se de que o id existe antes de fazer a requisição
         if (id) {
             const idGaleria = Number(id);
             if (!isNaN(idGaleria)) {
-                // Carregar os dados da galeria se for edição
                 axios.get(`http://localhost:8000/api/galerias/${idGaleria}`)
                     .then((res) => {
                         const galeria = res.data;
                         setIsEdit(true);
                         setValue("nome", galeria.nome);
                         setValue("data", galeria.data);
-                        // Não podemos preencher diretamente o campo de imagem com a URL, mas podemos exibir a URL ou o nome da imagem
                         setValue("imagem", galeria.imagem);
                     })
                     .catch((err) => {
@@ -64,12 +61,10 @@ export default function GerenciarGaleria() {
             formData.append('nome', data.nome);
             formData.append('data', data.data);
             
-            // Se o usuário selecionou uma imagem nova, adicionamos ao FormData
             if (data.imagem && data.imagem.length > 0) {
                 formData.append('imagem', data.imagem[0]);
             }
 
-            // Se estamos editando, enviamos uma requisição PUT, senão, POST para criar uma nova galeria
             if (isEdit && id) {
                 axios.put(`http://localhost:8000/api/galerias/${id}`, formData, {
                     headers: {
@@ -77,7 +72,7 @@ export default function GerenciarGaleria() {
                     },
                 })
                     .then(() => {
-                        navigate('/galeria'); // Navegar para a página de galeria após a atualização
+                        navigate('/galeria'); 
                     })
                     .catch((err) => {
                         alert("Erro ao atualizar a galeria.");
@@ -90,7 +85,7 @@ export default function GerenciarGaleria() {
                     },
                 })
                     .then((response) => {
-                        navigate('/galeria'); // Navegar para a página de galeria após criar
+                        navigate('/galeria'); 
                     })
                     .catch((err) => {
                         alert("Erro ao cadastrar a galeria.");
@@ -138,7 +133,6 @@ export default function GerenciarGaleria() {
                         className="form-control"
                         id="imagem"
                         accept="image/*"
-                        // Se já for um formulário de edição, o campo de imagem não precisa ser obrigatório
                         {...register('imagem')}
                     />
                     <div className="invalid-feedback">

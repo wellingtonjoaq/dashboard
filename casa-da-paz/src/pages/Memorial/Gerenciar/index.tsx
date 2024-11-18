@@ -66,13 +66,11 @@ export default function GerenciarMemorial() {
                 formData.append("tipo", tipo);
             }
 
-            // Verifica se há uma imagem e a anexa
             if (data.imagem && data.imagem[0]) {
                 formData.append("imagem", data.imagem[0]);
             }
 
             if (isEdit) {
-                // Envia a requisição PUT para editar
                 axios
                     .put(`${url}/${id}`, formData)
                     .then(() => {
@@ -82,7 +80,6 @@ export default function GerenciarMemorial() {
                         console.error(err);
                     });
             } else {
-                // Envia a requisição POST para adicionar
                 axios
                     .post(url, formData)
                     .then(() => {
