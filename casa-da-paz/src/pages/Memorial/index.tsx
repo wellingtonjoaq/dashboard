@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { LayoutDashboard } from "../../components/LayoutDashboard";
 import { useEffect, useState } from "react";
-import { IToken } from "../../interfaces/token";
-import { verificaTokenExpirado } from "../../services/token";
 import { Loading } from "../../components/Loading";
 import axios from "axios";
+import { IToken } from "../../interfaces/token";
 
 interface IMemorialItem {
     id: number;
@@ -26,7 +25,7 @@ export default function Memorial() {
     const carregarDados = async (tipo: "presidente" | "secretaria" | "tesoureiro" | "conselheiroFiscal" | "suplente") => {
         setLoading(true);
         try {
-            const res = await axios.get(`http://localhost:8000/api/memorial/?tipo=${tipo}`);
+            const res = await axios.get(`${import.meta.env.VITE_URL}/memorial?tipo=${tipo}`);
             
             if (tipo === "presidente") {
                 setDadosPresidentes(res.data);
@@ -40,7 +39,7 @@ export default function Memorial() {
                 setDadosSuplente(res.data);
             }
         } catch (err) {
-            console.error(`Erro ao carregar ${tipo}s`, err);
+            console.error(`Erro ao carregar ${tipo}s, err`);
         } finally {
             setLoading(false);
         }
@@ -73,19 +72,20 @@ export default function Memorial() {
     };
 
     useEffect(() => {
-        const lsStorage = localStorage.getItem("americanos.token");
-        let token: IToken | null = lsStorage ? JSON.parse(lsStorage) : null;
+        let lsStorage = localStorage.getItem('casadapaz.token')
 
-        if (!token || verificaTokenExpirado(token.accessToken)) {
-            navigate("/");
-        } else {
+        let token: IToken | null = null
+
+        if (typeof lsStorage === 'string') {
+            token = JSON.parse(lsStorage)
+        }
             carregarDados("presidente");
             carregarDados("secretaria");
             carregarDados("tesoureiro");
             carregarDados("conselheiroFiscal");
             carregarDados("suplente");
-        }
-    }, []);
+        
+        }, []);
 
     const renderCard = (item: IMemorialItem, tipo: "presidente" | "secretaria" | "tesoureiro" | "conselheiroFiscal" | "suplente") => (
         <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={item.id}>

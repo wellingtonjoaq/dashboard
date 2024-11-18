@@ -21,7 +21,6 @@ export default function Usuarios() {
     const [dadosUsuarios, setDadosUsuarios] =
         useState<Array<IUsuarios>>([])
 
-    // Função para excluir um usuário
     const handleExcluir = (id: number) => {
         const confirmacao = window.confirm("Tem certeza que deseja excluir este usuário?");
         if (confirmacao) {
@@ -57,9 +56,9 @@ export default function Usuarios() {
 
 
         setLoading(true);
-        axios.get('http://localhost:8000/api/user/') // A URL de API foi alterada para '/users'
+        axios.get('http://localhost:8000/api/user/') 
             .then((response) => {
-                setDadosUsuarios(response.data); // Assume que a resposta seja uma lista de usuários
+                setDadosUsuarios(response.data); 
                 setLoading(false);
             })
             .catch((error) => {
